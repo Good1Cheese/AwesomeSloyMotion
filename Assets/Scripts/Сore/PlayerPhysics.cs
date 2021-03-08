@@ -4,7 +4,7 @@ using UnityEngine;
 /// Отвечает за физику игрока
 /// </summary>
 [RequireComponent(typeof(CharacterController))]
-public class PlayerPhysicsController : MonoBehaviour
+public class PlayerPhysics : MonoBehaviour
 {
     [SerializeField] float m_jumpHeight;
     [SerializeField] float m_initialFallingForce;
@@ -14,16 +14,17 @@ public class PlayerPhysicsController : MonoBehaviour
 
     void Start()
     {
-        gravity = GameController.Instance.GameGravity;
         m_characterController = GetComponent<CharacterController>();
+        MainLinks.Instance.PlayerCharacterController = m_characterController;
+        gravity = MainLinks.Instance.GameGravity;
     }
 
     void Update()
     {
         Jump();
-        Gravity();
-        
-        if(m_characterController.isGrounded && velocity.y < 0)
+        СreateGravity();
+
+        if (m_characterController.isGrounded && velocity.y < 0)
         {
             velocity.y = m_initialFallingForce;
         }
@@ -36,10 +37,10 @@ public class PlayerPhysicsController : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(m_jumpHeight * -2 * gravity);
         }
-        
+
     }
 
-    void Gravity()
+    void СreateGravity()
     {
         velocity.y += gravity * Time.deltaTime;
         m_characterController.Move(velocity * Time.deltaTime);

@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c383721fc6915b246b105981610980f8, type: 3}
-  m_Name: Pistol
+  m_Script: {fileID: 11500000, guid: fff178f0be6fea34eb694c173756a00a, type: 3}
+  m_Name: Pistol Bullet
   m_EditorClassIdentifier: 
-  delayAfterShot: 2
-  maxShootingDistance: 200
-  spawnRadious: 3
-  bullet_SO: {fileID: 11400000, guid: fd97c76593a71824ea6299fd8275aacf, type: 2}
+  bulletPrefab: {fileID: 6598229739378410420, guid: fd69991cba468d345a65c4ed6c0645db, type: 3}
+  destroyDelay: 5

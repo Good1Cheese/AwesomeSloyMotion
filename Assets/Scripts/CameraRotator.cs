@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Класс, отвечающий за вращение камеры
+/// Rotates player's camera
 /// </summary>
 public class CameraRotator : MonoBehaviour
 {
-    [Tooltip("Вертикальная чувствительность игрока")] [SerializeField] float m_verticalMouseSensivity;
+    [Tooltip("Vertical sensitivy of camera")]
+    [SerializeField] float m_verticalMouseSensivity;
     float m_yRotation = 0;
 
     void Start()
@@ -20,7 +21,7 @@ public class CameraRotator : MonoBehaviour
 
     void RotateCamera()
     {
-        float mouseY = Input.GetAxis("Mouse Y") * m_verticalMouseSensivity * Time.deltaTime; 
+        float mouseY = Input.GetAxis("Mouse Y") * m_verticalMouseSensivity * Time.unscaledDeltaTime; 
 
         m_yRotation -= mouseY;
         m_yRotation = Mathf.Clamp(m_yRotation, -90f, 90f);

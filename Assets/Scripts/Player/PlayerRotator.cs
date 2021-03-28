@@ -19,8 +19,9 @@ public class PlayerRotator : MonoBehaviour
 
     void RotatePlayer()
     {
-        float mouseX = Input.GetAxis("Mouse X") * m_horizontalMouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * m_horizontalMouseSensitivity * Time.unscaledDeltaTime;
 
         gameObject.transform.Rotate(Vector3.up * mouseX);
     }
 }
+

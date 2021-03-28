@@ -1,17 +1,20 @@
 using UnityEngine;
 
 /// <summary>
-/// Отвечает за передвижения игрока
+/// Responsible for player movement
 /// </summary>
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [Tooltip("Множитель скорости")] [SerializeField] float m_speed;
+    [Tooltip("Player speed multiplier")]
+    [SerializeField] float m_speedMultiplier;
+
     CharacterController m_characterController;
 
     void Start()
     {
-        MainLinks.Instance.Player = gameObject;
         m_characterController = GetComponent<CharacterController>();
+        MainLinks.Instance.Player = gameObject;
     }
 
     void Update()
@@ -23,9 +26,9 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vectical = Input.GetAxis("Vertical");
-
+        
         Vector3 move = (transform.right * horizontal) + (transform.forward * vectical);
-        m_characterController.Move(move * Time.deltaTime * m_speed);
+        m_characterController.Move(move * Time.unscaledDeltaTime * m_speedMultiplier);
     }
 }
 
